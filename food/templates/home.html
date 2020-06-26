@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load mptt_tags %}
+
+{% block title %}Recipe Box{% endblock %}
+
+
+{% block content %}
+    <h1>Welcome to Hierarchial Data!</h1>
+    
+    <h2>Here is the tree of data in the database:</h2>
+    <ul>
+        {% recursetree nodes %}
+        <li>
+            {{ node.name }}
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    {{ children }}
+                </ul>
+            {% endif %}
+        </li>
+        {% endrecursetree %}
+    </ul>
+    
+
+
+{% endblock %}
